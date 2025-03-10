@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "TeamScores" ALTER COLUMN "penalty" DROP NOT NULL,
+ALTER COLUMN "totalTime" DROP NOT NULL,
+ALTER COLUMN "problemsSolved" DROP NOT NULL;

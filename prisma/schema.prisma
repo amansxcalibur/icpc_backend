@@ -29,7 +29,7 @@ model Institution {
 
 model Team {
   id            Int        @id
-  name          String
+  name          String 
   institutionId Int
   institution   Institution   @relation(fields: [institutionId], references: [id])
   isWomenOnly   Boolean
@@ -49,13 +49,18 @@ model TeamMembers {
 }
 
 model TeamScores {
-  id        Int    @id @default(autoincrement())
-  contestId Int
-  teamId    Int
-  score     Float?
+  contestId  Int
+  teamId     Int
+  rank       Int?  // Nullable, since Selection Round doesn't have ranks
+  problemsSolved Int?
+  totalTime  String?
+  penalty    Int?
 
+  // Relations
   contest Contest @relation(fields: [contestId], references: [id])
   team    Team    @relation(fields: [teamId], references: [id])
+
+  @@id([contestId, teamId])  // Composite Primary Key
 }
 
 model Contestant {
